@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+        text-align: center;
+        margin: 0;
+      }
+      div {
+        border: 1px solid grey;
+        border-spacing: 10px;
+        margin: 5px;
+        background-color: honeydew;
+      }
+      .nomi {
+        color: Green;
+      }
+      .nomi2 {
+        color: red;
+      }
+      h1 {
+        font-size: 5em;
+        margin-bottom: 10px;
+      }
+      .target {
+        background-color: lightgrey;
+        color: white;
+      }
+      button {
+        margin: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.5);
+        text-transform: uppercase;
+        padding: 10px;
+        color: darkgrey;
+        font-size: xx-large;
+        background-color: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1 class="target">Time</h1>
+      <h1 id="time"></h1>
+    </div>
+    <div>
+      <h1 class="target">StopWatch</h1>
+      <button id="start" onclick="start()">start</button>
+      <button id="pause" onclick="pause()">pause</button>
+      <button id="pause" onclick="Clear()">Clear</button>
+      <h1 id="stop">0:0:0</h1>
+    </div>
+    <script>
+      var m = 0;
+      var s = 0;
+      var ms = 0;
+      var a = document.getElementById("stop");
+
+      function start() {
+        stTime = setInterval(lettsgo, 10);
+        g = a.className = "nomi";
+      }
+      function lettsgo() {
+        a.textContent = m + ":" + s + ":" + ms;
+        ms++;
+        if (ms == 100) {
+          ms = 0;
+          s++;
+        }
+        if (s == 60) {
+          s = 0;
+          m++;
+        }
+      }
+
+      function pause() {
+        clearInterval(stTime);
+        g = a.className = "nomi2";
+      }
+      function Clear() {
+        pause();
+        m = 0;
+        s = 0;
+        ms = 0;
+        a.textContent = m + ":" + s + ":" + ms;
+      }
+      setInterval(() => {
+        var tme = new Date();
+        var a = document.getElementById("time");
+        // console.log(tme.getSeconds());
+        var c =
+          tme.getHours() + ":" + tme.getMinutes() + ":" + tme.getSeconds();
+        a.innerText = c;
+      }, 1000);
+    </script>
+  </body>
+</html>
